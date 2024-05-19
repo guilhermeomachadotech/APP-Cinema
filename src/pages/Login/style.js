@@ -32,7 +32,7 @@ export default StyleSheet.create({
         padding:18,
         height:300,
         borderRadius: 20 ,
-        backgroundColor:"#31195F",
+        backgroundColor:"#4F4F4F",
       },
       label:{
         width:'100%',
@@ -73,7 +73,7 @@ export default StyleSheet.create({
         width:150,
         height:35,
         borderRadius: 20,
-        backgroundColor:'purple',
+        backgroundColor:'#8B0000',
       },
     
       textLogar:{

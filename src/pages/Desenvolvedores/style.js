@@ -60,7 +60,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        backgroundColor: '#23232D',
+        backgroundColor:'#8B0000',
         paddingVertical: 10,
       },
 })

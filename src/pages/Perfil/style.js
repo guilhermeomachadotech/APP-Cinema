@@ -82,7 +82,7 @@ export default StyleSheet.create({
         heigth: 10,
         padding:10,
         borderRadius:20,
-        backgroundColor:'red',
+        backgroundColor:'#8B0000',
         justifyContent:'center',
         alignItems:'center',
     },
@@ -95,7 +95,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        backgroundColor: '#23232D',
+        backgroundColor:'#8B0000',
         paddingVertical: 10,
       },
       categoryIcon: {

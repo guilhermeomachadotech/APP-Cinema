@@ -22,7 +22,7 @@ export default function DevsScreen({navigation}){
     return(
         <SafeAreaView style={styles.container}>
                 
-                    <LinearGradient colors={["#2D195F", "#4D2AA3", "#6D3CE7", "#7C3EF0"]} style={styles.gradient}>
+                <LinearGradient colors={["#1C1C1C", "#363636", "#4F4F4F"]} style={styles.gradient}>
                         <View style={styles.titulo}>
                             <Text style={styles.txtTitulo}>Desenvolvedores</Text>
                         </View>

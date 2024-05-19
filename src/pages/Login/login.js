@@ -38,7 +38,7 @@ export default function LoginScreen ({navigation}) {
   return (
 
     <SafeAreaView style={styles.container}>
-      <LinearGradient colors={["#2D195F", "#4D2AA3", "#6D3CE7", "#7C3EF0"]} style={styles.gradient}>
+       <LinearGradient colors={["#1C1C1C", "#363636", "#4F4F4F"]} style={styles.gradient}>
         <ScrollView style={styles.scroll}>
           
             <View style={styles.container_img}>
@@ -64,7 +64,7 @@ export default function LoginScreen ({navigation}) {
                 </View>
                 <View style={styles.container_input}>
 
-                  <TextInput style={styles.input} placeholder="Digite sua senha..." keyboardType="password" onChangeText={(text)=>setPassword(text)} errorMessage={errorPassword}></TextInput>
+                  <TextInput secureTextEntry={true} style={styles.input} placeholder="Digite sua senha..." keyboardType="default" onChangeText={(text)=>setPassword(text)} errorMessage={errorPassword}></TextInput>
                   <Text style={styles.errorMessage}>{errorPassword}</Text>
 
                 </View>

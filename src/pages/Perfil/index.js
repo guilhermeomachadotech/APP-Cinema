@@ -25,7 +25,7 @@ export default function PerfilScreen ({navigation}){
     }
     return(
         <SafeAreaView style={styles.container}>
-            <LinearGradient style={styles.gradient} colors={["#2D195F", "#4D2AA3", "#6D3CE7", "#7C3EF0"]}>
+            <LinearGradient colors={["#1C1C1C", "#363636", "#4F4F4F"]} style={styles.gradient}>
                 <View style={styles.header}>
                     <View style={styles.viewTitulo}>
                         <Text style={styles.txtTitulo}>Perfil</Text>

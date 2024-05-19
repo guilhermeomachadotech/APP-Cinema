@@ -63,7 +63,7 @@ export default function App() {
                 </View>
                 <View style={styles.container_input}>
 
-                  <TextInput style={styles.input} placeholder="Digite sua senha..." keyboardType="password" onChangeText={(text)=>setPassword(text)} errorMessage={errorPassword}></TextInput>
+                  <TextInput style={styles.input} placeholder="Digite sua senha..." placeholderTextColor="#FFF"  keyboardType="password" onChangeText={(text)=>setPassword(text)} errorMessage={errorPassword}></TextInput>
                   <Text style={styles.errorMessage}>{errorPassword}</Text>
 
                 </View>
