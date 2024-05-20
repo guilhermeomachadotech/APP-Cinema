@@ -31,7 +31,36 @@ export default StyleSheet.create({
     moviesContainer: {
       paddingHorizontal: 10,
     },
+    contFilmes:{
+      display:'flex',
+      flex:1,
+    },
+    viewCategoria:{
+      display:'flex',
+      width:'100%',
+      marginBottom:20,
+    },
+    descView:{
+      display:'flex',
+      width:'100%',
+      height:40,
+      flexDirection:'row',
+      justifyContent:'space-around',
+      alignItems:'center'
+    },
+    viewTextMovie:{
+      display:'flex',
+      flex:1,
+      flexDirection:'column',
+      marginLeft:10,
+    },
+    imgClassMovieView:{
+      display:'flex',
+      flex:1,
+    },
     movie: {
+      display:'flex',
+      flex:1,
       width: 150,
       height: 250,
       margin: 5,
@@ -42,6 +71,11 @@ export default StyleSheet.create({
       width: '100%',
       height: '70%',
       resizeMode: 'contain',
+    },
+    movieClass:{
+      width: 20,
+      height:20,
+      resizeMode:'contain',
     },
     movieTitle: {
       color: '#fff',
