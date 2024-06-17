@@ -1,21 +1,24 @@
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
+import React from 'react';
+import {Text, View, Image, TextInput, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import {useState} from 'react';
 import styles from './style';
-import {useNavigation} from '@react-navigation/native';
 
-import iconPerfil from './img/icon-perfil.webp';
 
-export default function App() {
-    const navigation =useNavigation();
+import iconPerfil from '../../img/icon-perfil.webp';
+
+export default function CadastroCliente ({navigation}) {
+  
   const [nickname, setNickName]=useState(null);
   const [password, setPassword]=useState(null);
+  const [email, setEmail]=useState(null);
   const [errorName, setErrorName]=useState(null);
+  const [errorEmail, setErrorEmail]=useState(null);
   const [errorPassword, setErrorPassword]=useState(null);
 
   const validarLogin=()=>{
     let error=false
-    if (nickname==null) {
+    if (nickname==null ) {
       setErrorName("Preencha seu nome!!!")
       error=true
     }
@@ -23,21 +26,25 @@ export default function App() {
       setErrorPassword("Preencha a senha!!!")
       error=true
     }
+    if (email==null) {
+      setErrorEmail("Preencha o email!!!")
+      error=true
+    }
     return !error
   }
 
-  const logar=()=>{
+  const cadastrar=()=>{
     if(validarLogin()){
         navigation.navigate('HomeScreen');
     }
   }
-  const goCadastro=()=>{
-    navigation.navigate('Cadastro-Cliente')
+  const goLogin=()=>{
+    navigation.navigate('Login');
   }
   return (
 
     <SafeAreaView style={styles.container}>
-      <LinearGradient colors={["#2D195F", "#4D2AA3", "#6D3CE7", "#7C3EF0"]} style={styles.gradient}>
+       <LinearGradient colors={["#1C1C1C", "#363636", "#4F4F4F"]} style={styles.gradient}>
         <ScrollView style={styles.scroll}>
           
             <View style={styles.container_img}>
@@ -46,8 +53,9 @@ export default function App() {
 
             <View style={styles.viewForm}>
               <View style={styles.container_conteudo_form}>
+
                 <View style={styles.label}>
-                  <Text style={styles.txtInfo}>Usuário</Text>
+                  <Text style={styles.txtInfo}>Nome:</Text>
                 </View>
 
                 <View style={styles.container_input}>
@@ -57,27 +65,37 @@ export default function App() {
                 </View>
 
                 <View style={styles.label}>
+                  <Text style={styles.txtInfo}>Email</Text>
+                </View>
+
+                <View style={styles.container_input}>
+
+                  <TextInput style={styles.input} placeholder="Digite seu email..." keyboardType="email-address" onChangeText={(text)=>setEmail(text)} errorText={errorEmail}></TextInput>
+                  <Text style={styles.errorMessage}>{errorEmail}</Text>
+                </View>
+
+                <View style={styles.label}>
 
                   <Text style={styles.txtInfo}>Senha</Text>
 
                 </View>
                 <View style={styles.container_input}>
 
-                  <TextInput style={styles.input} placeholder="Digite sua senha..." placeholderTextColor="#FFF"  keyboardType="password" onChangeText={(text)=>setPassword(text)} errorMessage={errorPassword}></TextInput>
+                  <TextInput secureTextEntry={true} style={styles.input} placeholder="Digite sua senha..." keyboardType="default" onChangeText={(text)=>setPassword(text)} errorMessage={errorPassword}></TextInput>
                   <Text style={styles.errorMessage}>{errorPassword}</Text>
 
                 </View>
 
                 <View style={styles.container_btn}>
 
-                  <TouchableOpacity style={styles.btn_logar} onPress={()=>logar()}>
-                    <Text style={styles.textLogar}>Login</Text>
+                  <TouchableOpacity style={styles.btn_logar} onPress={()=>cadastrar()}>
+                    <Text style={styles.textLogar}>Cadastrar</Text>
                   </TouchableOpacity>
 
                 </View>
 
                 <View style={styles.viewTextLink}>
-                  <Text style={styles.textLink}>Não tem uma conta? <TouchableOpacity style={styles.btnLink} onPress={()=>goCadastro()}><Text>CLIQUE AQUI!</Text></TouchableOpacity></Text>
+                  <Text style={styles.textLink}>Já tem uma conta? <TouchableOpacity style={styles.btnLink} onPress={()=>goLogin()}><Text>CLIQUE AQUI!</Text></TouchableOpacity></Text>
                 </View>
 
               </View>

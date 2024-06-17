@@ -28,6 +28,22 @@ export default StyleSheet.create({
     settingsIcon: {
       marginLeft: 10,
     },
+    btnLink:{
+      display:'flex',
+      flex:1,
+    },
+    contCategoriaLink:{
+      display:'flex',
+      flex:1,
+      justifyContent:'center',
+      alignItems:'center',
+    },
+    textLinkCategoria:{
+      textAlign:'center',
+      fontSize:20,
+      fontWeight:'bold',
+      color:'white'
+    },
     moviesContainer: {
       paddingHorizontal: 10,
     },
