@@ -8,8 +8,11 @@ import SplashScreen from './src/pages/Splash/index';
 import HomeScreen from './src/pages/Home/index';
 import Categotia from './src/pages/Categorias/index';
 import CadastroCliente from './src/pages/Cadastro-Cliente';
+<<<<<<< HEAD
 import CadastroFilmes from './src/pages/Cadastro-Filmes';
 import LoginADM from './src/pages/LoginADM';
+=======
+>>>>>>> bf28b1d3a7055902e298e323835b92e17333cddd
 
 const Stack =createNativeStackNavigator();
 
@@ -46,6 +49,7 @@ export default function App(){
         options={{
           headerShown:false,
         }}/>
+<<<<<<< HEAD
         <Stack.Screen name="LoginADM" component={LoginADM}
         options={{
           headerShown:false,
@@ -54,6 +58,8 @@ export default function App(){
         options={{
           headerShown:false,
         }}/>
+=======
+>>>>>>> bf28b1d3a7055902e298e323835b92e17333cddd
       </Stack.Navigator>
     </NavigationContainer>
   );

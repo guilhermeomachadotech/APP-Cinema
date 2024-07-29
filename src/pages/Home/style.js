@@ -31,7 +31,11 @@ export default StyleSheet.create({
     },
     btnLink:{
       display:'flex',
+<<<<<<< HEAD
       
+=======
+      flex:1,
+>>>>>>> bf28b1d3a7055902e298e323835b92e17333cddd
     },
     contCategoriaLink:{
       display:'flex',
