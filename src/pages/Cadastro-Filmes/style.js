@@ -1,33 +1,38 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-
-    container: {
-        display:'flex',
-        flex: 1,
-      },
-      imgPerfil:{
-        width:100,
-        height:100,
-        resizeMode:'contain',
-      },
-      scroll:{
+    container:{
         display:'flex',
         flex:1,
-      },
-      container_img:{
-        flex:2,
-        height:300,
-        justifyContent:  'center',
-        alignItems: 'center',
-        padding: 20,
-      },
-      viewForm:{
+    },
+    container_img:{
+        display:'flex',
         flex:1,
         justifyContent:'center',
         alignItems:'center',
-      },
-      container_conteudo_form:{
+    },
+    imgPerfil:{
+        width:300,
+        height:300,
+    },
+    contTitulo:{
+        display:'flex',
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    titulo:{
+        fontSize:20,
+        textAlign:'center',
+        fontWeight:'bold',
+        color:'white',
+    },
+    viewForm:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    container_conteudo_form:{
         width:250,
         padding:18,
         height:300,
@@ -64,8 +69,7 @@ export default StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
       },
-    
-      btn_logar:{
+      btn_cadastrar:{
         
         justifyContent:'center',
         alignItems:'center',
@@ -76,7 +80,7 @@ export default StyleSheet.create({
         backgroundColor:'#8B0000',
       },
     
-      textLogar:{
+      textCadastrar:{
         fontSize:15,
         fontWeight:'bold',
         color:'white',
@@ -85,19 +89,7 @@ export default StyleSheet.create({
         display:'flex',
         flex:1,
       },
-      viewTextLink:{
-        flex:1,
-        marginTop:15,
-      },
-      textLink:{
-        color:'white',
-        textAlign:'center',
-        fontSize:12,
-      },
-      btnLink:{
-        fontWeight:'bold',
-        textTransform:'uppercase',
-      },
+      
       errorMessage:{
         fontSize:12,
         color: 'red',
@@ -106,10 +98,14 @@ export default StyleSheet.create({
         flex:1,
         margin:15,
       },
-      errorLogin:{
-        fontSize:12,
-        color: 'red',
+      footerMenu: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor:'#8B0000',
+        paddingVertical: 10,
+      },
+      categoryIcon: {
+        marginHorizontal: 15,
       },
 })
-
-  

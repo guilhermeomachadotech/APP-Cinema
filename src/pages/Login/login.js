@@ -1,23 +1,41 @@
 import React from 'react';
 import {Text, View, Image, TextInput, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import styles from './style';
-
 
 import iconPerfil from '../../img/icon-perfil.webp';
 
 export default function LoginScreen ({navigation}) {
   
-  const [nickname, setNickName]=useState(null);
+  const [email, setemail]=useState(null);
   const [password, setPassword]=useState(null);
-  const [errorName, setErrorName]=useState(null);
+  const [errorEmail, seterrorEmail]=useState(null);
   const [errorPassword, setErrorPassword]=useState(null);
+  const [errorLogin, setErrorLogin]= useState(null);
+
+  const [usuarioExistente, setUsuarioExistente]=useState(false);
+
+  const [clientes, setClientes]=useState([]);
+
+  const getCliente = async()=>{
+    try{
+      const response = await fetch('http://localhost:8000/api/cliente');
+      const json =await response.json();
+      setClientes(json);
+    }catch(error){
+      console.error(error);
+    }
+  }
+
+  useEffect(()=>{
+    getCliente();
+  },[])
 
   const validarLogin=()=>{
     let error=false
-    if (nickname==null ) {
-      setErrorName("Preencha seu nome!!!")
+    if (email==null ) {
+      seterrorEmail("Preencha seu email!!!")
       error=true
     }
     if (password==null) {
@@ -27,13 +45,44 @@ export default function LoginScreen ({navigation}) {
     return !error
   }
 
+  const verificarUsuario=()=>{
+    try{
+    for (let index = 0; index < clientes.length; index++) {
+     if(clientes[index].email==email){
+        if(clientes[index].senha==password){
+          setUsuarioExistente(true);
+          setErrorLogin(null);
+          break
+        }else{
+          setErrorLogin("Senha incorreta!!!");
+          setUsuarioExistente(false);
+        }
+     }else{
+        setErrorLogin("Esse email não está cadastrado!!!")
+        setUsuarioExistente(false);
+     }
+      
+    }
+  }catch(error){
+    console.error(error);
+  }
+  }
   const logar=()=>{
     if(validarLogin()){
+      verificarUsuario()
+      if(usuarioExistente){
         navigation.navigate('HomeScreen');
+      }else{
+
+      }
+        
     }
   }
   const goCadastro=()=>{
-
+    navigation.navigate('Cadastro-Cliente');
+  }
+  const goLoginADM=()=>{
+    navigation.navigate('HomeScreen');
   }
   return (
 
@@ -53,8 +102,8 @@ export default function LoginScreen ({navigation}) {
 
                 <View style={styles.container_input}>
 
-                  <TextInput style={styles.input} placeholder="Digite seu nome..." keyboardType="text" onChangeText={(text)=>setNickName(text)} errorText={errorName}></TextInput>
-                  <Text style={styles.errorMessage}>{errorName}</Text>
+                  <TextInput style={styles.input} placeholder="Digite seu nome..." keyboardType="text" onChangeText={(text)=>setemail(text)} errorText={errorEmail}></TextInput>
+                  <Text style={styles.errorMessage}>{errorEmail}</Text>
                 </View>
 
                 <View style={styles.label}>
@@ -80,7 +129,12 @@ export default function LoginScreen ({navigation}) {
                 <View style={styles.viewTextLink}>
                   <Text style={styles.textLink}>Não tem uma conta? <TouchableOpacity style={styles.btnLink} onPress={()=>goCadastro()}><Text>CLIQUE AQUI!</Text></TouchableOpacity></Text>
                 </View>
-
+                <View style={styles.viewTextLink}>
+                  <Text style={styles.textLink}>É ADM? <TouchableOpacity style={styles.btnLink} onPress={()=>goLoginADM()}><Text>CLIQUE AQUI!</Text></TouchableOpacity></Text>
+                </View>
+                <View style={styles.viewError}>
+                  <Text style={styles.errorLogin}>{errorLogin}</Text>
+                </View>
               </View>
 
             </View>

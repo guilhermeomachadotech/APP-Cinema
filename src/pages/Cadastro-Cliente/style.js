@@ -87,7 +87,7 @@ export default StyleSheet.create({
       },
       viewTextLink:{
         flex:1,
-        marginTop:15,
+        marginTop:20,
       },
       textLink:{
         color:'white',
@@ -99,14 +99,6 @@ export default StyleSheet.create({
         textTransform:'uppercase',
       },
       errorMessage:{
-        fontSize:12,
-        color: 'red',
-      },
-      viewError:{
-        flex:1,
-        margin:15,
-      },
-      errorLogin:{
         fontSize:12,
         color: 'red',
       },

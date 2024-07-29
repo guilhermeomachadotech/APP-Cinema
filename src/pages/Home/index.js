@@ -95,13 +95,17 @@ export default function HomeScreen({navigation}) {
   function comeBack() {
     navigation.navigate("Login")
   }
+
+  function goCategoria(){
+    navigation.navigate("Categoria")
+  }
   return (
     <SafeAreaView style={styles.container}>
       
       <ScrollView>
       <LinearGradient colors={["#1C1C1C", "#363636", "#4F4F4F"]} style={styles.gradient}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={()=>goPerfil()}>
+          <TouchableOpacity style={styles.btnLink} onPress={()=>goPerfil()}>
             <Image source={require('../../img/icon-perfil.webp')} style={styles.profileImage} />
           </TouchableOpacity>
           
@@ -111,6 +115,11 @@ export default function HomeScreen({navigation}) {
           </TouchableOpacity>
         </View>
         <View style={styles.contFilmes}>
+          <View style={styles.contCategoriaLink}>
+            <TouchableOpacity onPress={()=>goCategoria()}>
+              <Text style={styles.textLinkCategoria}>Ver Todas as categorias</Text>
+            </TouchableOpacity>
+          </View>
         <View style={styles.viewCategoria}>
           <Text style={styles.categoryTitle}>Ação</Text>
         </View>

@@ -102,14 +102,6 @@ export default StyleSheet.create({
         fontSize:12,
         color: 'red',
       },
-      viewError:{
-        flex:1,
-        margin:15,
-      },
-      errorLogin:{
-        fontSize:12,
-        color: 'red',
-      },
 })
 
   
