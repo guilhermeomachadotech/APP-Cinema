@@ -19,6 +19,9 @@ export default function DevsScreen({navigation}){
       function goDevs(){
         navigation.navigate("DevsScreen")
       }
+      function goMapa(){
+        navigation.navigate('MapaScreen');
+    }
     return(
         <SafeAreaView style={styles.container}>
                 
@@ -65,7 +68,7 @@ export default function DevsScreen({navigation}){
                     <TouchableOpacity onPress={()=>goHome()}>
                         <Ionicons name="film" size={24} color="#fff" style={styles.categoryIcon} />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>goMapa()}>
                         <Ionicons name="location-outline" size={24} color="#fff" style={styles.categoryIcon} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>goPerfil()}>

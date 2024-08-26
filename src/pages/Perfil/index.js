@@ -23,6 +23,9 @@ export default function PerfilScreen ({navigation}){
     function goPerfil() {
         navigation.navigate("PerfilScreen");
     }
+    function goMapa(){
+        navigation.navigate('MapaScreen');
+    }
     return(
         <SafeAreaView style={styles.container}>
             <LinearGradient colors={["#1C1C1C", "#363636", "#4F4F4F"]} style={styles.gradient}>
@@ -55,7 +58,7 @@ export default function PerfilScreen ({navigation}){
                 <TouchableOpacity onPress={()=>voltarMenu()}>
                 <Ionicons name="film" size={24} color="#fff" style={styles.categoryIcon} />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>goMapa()}>
                 <Ionicons name="location-outline" size={24} color="#fff" style={styles.categoryIcon} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>goPerfil()}>

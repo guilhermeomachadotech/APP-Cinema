@@ -99,6 +99,9 @@ export default function HomeScreen({navigation}) {
   function goCategoria(){
     navigation.navigate("Categoria")
   }
+  function goMapa(){
+    navigation.navigate('MapaScreen');
+}
   return (
     <SafeAreaView style={styles.container}>
       
@@ -262,7 +265,7 @@ export default function HomeScreen({navigation}) {
         <TouchableOpacity onPress={()=>goHome()}>
           <Ionicons name="film" size={24} color="#fff" style={styles.categoryIcon} />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>goMapa()}>
           <Ionicons name="location-outline" size={24} color="#fff" style={styles.categoryIcon} />
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>goPerfil()}>

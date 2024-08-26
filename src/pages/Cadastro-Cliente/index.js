@@ -35,7 +35,6 @@ export default function CadastroCliente ({navigation}) {
 
   const cadastrar=()=>{
     if(validarLogin()){
-<<<<<<< HEAD
         fetch('http://127.0.0.1:8000/api/cliente', {
           method: 'post',
           headers:{
@@ -48,8 +47,6 @@ export default function CadastroCliente ({navigation}) {
             senha: password,
           })
         })
-=======
->>>>>>> bf28b1d3a7055902e298e323835b92e17333cddd
         navigation.navigate('HomeScreen');
     }
   }
