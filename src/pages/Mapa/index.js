@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
-import { Text, View, Image, TextInput, SafeAreaView, TouchableOpacity} from "react-native";
-import MapView, {Marker} from 'react-native-maps';
+import React, {useState, useEffect} from 'react';
+import { Platform, Text, View, Image, TextInput, SafeAreaView, TouchableOpacity} from "react-native";
+import MapView, {Marker, UrlTile} from 'react-native-maps';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import * as Location from 'expo-location';
+import * as Device from 'expo-device';
 import styles from './style'; 
 
 import icon_maker from '../../img/icon/icon-maker.png';
+import icon_location from '../../img/icon/location-marker-icon.png';
 import { ScrollView } from 'react-native';
+import axios from 'axios';
 
-/*import cinemark from  '../../img/cinema/cinemark.jpg';
-import cinemarkRio from '../../img/cinema/cinemark-rio-janeiro.jpg';
-import cinepolis from  '../../img/cinema/cinepolis.jpg'; 
-*/
 const makers=[
     {
         latitude: -23.5605808,
@@ -38,6 +38,15 @@ const makers=[
 ]
 
 export default function MapaScreen({navigation}){
+
+    const [location, setLocation]= useState(null);
+    const [errorMSG, setErrorMSG] = useState(null);
+    
+    const [longitudeAtual, setLongitudeAtual] = useState();
+    const [latitudeAtual, setLatitudeAtual] = useState();
+
+    const [endereco, setEndereco] = useState('');
+
     function goPerfil() {
         navigation.navigate("PerfilScreen");
     }
@@ -58,7 +67,63 @@ export default function MapaScreen({navigation}){
     function goMapa(){
         navigation.navigate('MapaScreen');
     }
+    //Verficar localização atual:
 
+    useEffect(()=>{
+        (async()=>{
+            if (Platform.OS ==='android' && !Device.isDevice) {
+                setErrorMSG('Opa, esse app não rodará em um emulador de Android ou em Snack. Tente em seu aparelho móvel!');
+                return;
+            }
+
+            let {status} = await Location.requestForegroundPermissionsAsync();
+
+            if (status!== 'granted') {
+                setErrorMSG('Permissão para acessar a geolocalização foi negada!');
+                return;
+            }
+
+            let {coords} = await Location.getCurrentPositionAsync({});
+            setLocation(coords);
+
+            await reverseGeocode(coords.latitude, coords.longitude);
+        })();
+    },[])
+
+    //Pegar o endereço do usuário
+
+    const reverseGeocode = async (latitude, longitude)=>{
+        try {
+            const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&email=machado.gui.oliveira@gmail.com`;
+            const response = await axios.get(url);
+            const data = response.data;
+            if (response.status === 200) {
+                if(data && data.address){
+                    const adress = `${data.address.road || ''}, ${data.adress.city || ''}, ${data.address.state || ''}, ${data.address.country || ''}`;
+                    setEndereco(adress.trim());
+                }else{
+                    setEndereco('Endereço não encontrado!');
+                }
+            }else{
+                // Tratar resposta HTTP não 200
+                setAddress('Erro na resposta da API');
+            }
+            
+        } catch (error) {
+            console.log(error);
+            setEndereco('Erro ao obter o endereço!');
+        }
+    }
+    if (errorMSG) {
+        
+    }else if (!location) {
+        return(
+            <View style={styles.container}>
+                <Text>Carregando...</Text>
+            </View>
+        )
+    }
+    
     return(
         <SafeAreaView style={styles.container}>
             
@@ -73,7 +138,11 @@ export default function MapaScreen({navigation}){
                         <MaterialCommunityIcons name="logout-variant" size={24} color="red" style={styles.settingsIcon}/>
                     </TouchableOpacity>
                 </View>
-
+                <View>
+    
+                    
+                </View>
+                
                 <View style={styles.contMap}>
                     <MapView style={styles.map}
                         mapType='terrain'
@@ -84,6 +153,19 @@ export default function MapaScreen({navigation}){
                             longitudeDelta: 0.0421,
                         }}
                     >
+                        
+                    <Marker
+                        title={endereco}
+                        coordinate={{
+                            latitude: location.latitude,
+                            longitude:location.longitude
+                        }}
+                    >
+                    <View style={styles.container_marker}>
+                                <Image source={icon_location} style={{width:70, height:70, resizeMode:'contain'}}></Image>
+                    </View>
+                    </Marker>
+                    
                     {makers.map((marker, index)=>(
                         <Marker
                             
