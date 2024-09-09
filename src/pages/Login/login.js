@@ -127,10 +127,14 @@ export default function LoginScreen ({navigation}) {
                 </View>
 
                 <View style={styles.viewTextLink}>
-                  <Text style={styles.textLink}>Não tem uma conta? <TouchableOpacity style={styles.btnLink} onPress={()=>goCadastro()}><Text>CLIQUE AQUI!</Text></TouchableOpacity></Text>
+                    <Text style={styles.textLink}>Não tem uma conta?</Text>
+                    <TouchableOpacity style={styles.btnLink} onPress={()=>goCadastro()}>
+                      <Text style={styles.txtLink}>CLIQUE AQUI!</Text>
+                      </TouchableOpacity>
                 </View>
                 <View style={styles.viewTextLink}>
-                  <Text style={styles.textLink}>É ADM? <TouchableOpacity style={styles.btnLink} onPress={()=>goLoginADM()}><Text>CLIQUE AQUI!</Text></TouchableOpacity></Text>
+                  <Text style={styles.textLink}>É ADM?</Text>
+                  <TouchableOpacity style={styles.btnLink} onPress={()=>goLoginADM()}><Text style={styles.txtLink}>CLIQUE AQUI!</Text></TouchableOpacity>
                 </View>
                 <View style={styles.viewError}>
                   <Text style={styles.errorLogin}>{errorLogin}</Text>

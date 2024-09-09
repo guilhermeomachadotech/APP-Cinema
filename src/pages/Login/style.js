@@ -30,7 +30,7 @@ export default StyleSheet.create({
       container_conteudo_form:{
         width:250,
         padding:18,
-        height:300,
+        height:'auto',
         borderRadius: 20 ,
         backgroundColor:"#4F4F4F",
       },
@@ -71,7 +71,7 @@ export default StyleSheet.create({
         alignItems:'center',
         padding:10,
         width:150,
-        height:35,
+        height:'auto',
         borderRadius: 20,
         backgroundColor:'#8B0000',
       },
@@ -86,7 +86,9 @@ export default StyleSheet.create({
         flex:1,
       },
       viewTextLink:{
+        display:'flex',
         flex:1,
+        flexDirection: 'column',
         marginTop:15,
       },
       textLink:{
@@ -94,9 +96,14 @@ export default StyleSheet.create({
         textAlign:'center',
         fontSize:12,
       },
+      txtLink:{
+        color:'white',
+        textAlign:'center',
+        fontWeight: 'bold',
+        fontSize:14,
+      },
       btnLink:{
-        fontWeight:'bold',
-        textTransform:'uppercase',
+        
       },
       errorMessage:{
         fontSize:12,

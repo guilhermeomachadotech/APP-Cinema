@@ -30,7 +30,7 @@ export default StyleSheet.create({
       container_conteudo_form:{
         width:250,
         padding:18,
-        height:300,
+        height:'auto',
         borderRadius: 20 ,
         backgroundColor:"#4F4F4F",
       },
@@ -71,7 +71,7 @@ export default StyleSheet.create({
         alignItems:'center',
         padding:10,
         width:150,
-        height:35,
+        height:'auto',
         borderRadius: 20,
         backgroundColor:'#8B0000',
       },
@@ -97,6 +97,12 @@ export default StyleSheet.create({
       btnLink:{
         fontWeight:'bold',
         textTransform:'uppercase',
+      },
+      txtLink:{
+        color:'white',
+        textAlign:'center',
+        fontWeight: 'bold',
+        fontSize:14,
       },
       errorMessage:{
         fontSize:12,

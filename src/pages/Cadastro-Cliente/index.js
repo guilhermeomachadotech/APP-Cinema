@@ -107,7 +107,8 @@ export default function CadastroCliente ({navigation}) {
                 </View>
 
                 <View style={styles.viewTextLink}>
-                  <Text style={styles.textLink}>Já tem uma conta? <TouchableOpacity style={styles.btnLink} onPress={()=>goLogin()}><Text>CLIQUE AQUI!</Text></TouchableOpacity></Text>
+                  <Text style={styles.textLink}>Já tem uma conta?</Text>
+                  <TouchableOpacity style={styles.btnLink} onPress={()=>goLogin()}><Text style={styles.txtLink}>CLIQUE AQUI!</Text></TouchableOpacity>
                 </View>
 
               </View>

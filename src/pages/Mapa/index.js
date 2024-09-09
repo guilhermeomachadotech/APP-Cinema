@@ -99,7 +99,7 @@ export default function MapaScreen({navigation}){
             const data = response.data;
             if (response.status === 200) {
                 if(data && data.address){
-                    const adress = `${data.address.road || ''}, ${data.adress.city || ''}, ${data.address.state || ''}, ${data.address.country || ''}`;
+                    const adress = `${data.address.road || ''}, ${data.address.city || ''}, ${data.address.state || ''}`;
                     setEndereco(adress.trim());
                 }else{
                     setEndereco('Endereço não encontrado!');
@@ -147,8 +147,8 @@ export default function MapaScreen({navigation}){
                     <MapView style={styles.map}
                         mapType='terrain'
                         initialRegion={{
-                            latitude: -23.5605808,
-                            longitude: -46.6455849,
+                            latitude: location.latitude,
+                            longitude: location.longitude,
                             latitudeDelta: 0.0922,
                             longitudeDelta: 0.0421,
                         }}
@@ -160,6 +160,7 @@ export default function MapaScreen({navigation}){
                             latitude: location.latitude,
                             longitude:location.longitude
                         }}
+                        description='Essa é sua localização atual'
                     >
                     <View style={styles.container_marker}>
                                 <Image source={icon_location} style={{width:70, height:70, resizeMode:'contain'}}></Image>
