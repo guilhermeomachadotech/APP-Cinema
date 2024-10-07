@@ -17,7 +17,7 @@ export default function HomeScreen({navigation}) {
 
   const getFilmesAcao = async()=>{
     try{
-      const response = await fetch('http://localhost:8000/api/filme-acao')
+      const response = await fetch('https://e470-2804-7518-49bd-de00-454c-a0fa-c249-dffe.ngrok-free.app/api/filme-acao')
       const json = await response.json();
       setDataFilmeAcao(json);
     }catch(error){
@@ -27,7 +27,7 @@ export default function HomeScreen({navigation}) {
 
   const getFilmesAnimacao = async()=>{
     try{
-      const response = await fetch('http://localhost:8000/api/filme-animacao')
+      const response = await fetch('https://e470-2804-7518-49bd-de00-454c-a0fa-c249-dffe.ngrok-free.app/api/filme-animacao')
       const json = await response.json();
       setDataFilmesAnimacao(json);
     }catch(error){
@@ -37,7 +37,7 @@ export default function HomeScreen({navigation}) {
 
   const getFilmesAventura = async()=>{
     try{
-      const response = await fetch('http://localhost:8000/api/filme-aventura')
+      const response = await fetch('https://e470-2804-7518-49bd-de00-454c-a0fa-c249-dffe.ngrok-free.app/api/filme-aventura')
       const json = await response.json();
       setDataFilmesAventura(json);
     }catch(error){
@@ -47,7 +47,7 @@ export default function HomeScreen({navigation}) {
 
   const getFilmesDrama = async()=>{
     try{
-      const response = await fetch('http://localhost:8000/api/filme-drama')
+      const response = await fetch('https://e470-2804-7518-49bd-de00-454c-a0fa-c249-dffe.ngrok-free.app/api/filme-drama')
       const json = await response.json();
       setDataFilmesDrama(json);
     }catch(error){
@@ -57,7 +57,7 @@ export default function HomeScreen({navigation}) {
 
   const getFilmesComedia = async()=>{
     try{
-      const response = await fetch('http://localhost:8000/api/filme-comedia')
+      const response = await fetch('https://e470-2804-7518-49bd-de00-454c-a0fa-c249-dffe.ngrok-free.app/api/filme-comedia')
       const json = await response.json();
       setDataFilmesComedia(json);
     }catch(error){
@@ -67,7 +67,7 @@ export default function HomeScreen({navigation}) {
 
   const getFilmesSuspense = async()=>{
     try{
-      const response = await fetch('http://localhost:8000/api/filme-suspense')
+      const response = await fetch('https://e470-2804-7518-49bd-de00-454c-a0fa-c249-dffe.ngrok-free.app/api/filme-suspense')
       const json = await response.json();
       setDataFilmesSuspense(json);
     }catch(error){

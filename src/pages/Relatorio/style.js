@@ -70,5 +70,12 @@ export default StyleSheet.create({
     categoryIcon: {
       marginHorizontal: 15,
     },
+    txtTituloGraficos:{
+      marginTop:20,
+      fontSize:20,
+      color:'#fff',
+      fontWeight:'bold'
+
+    }
   });
   

@@ -7,16 +7,17 @@ import Foundation from '@expo/vector-icons/Foundation';
 import { useEffect, useState } from "react";
 import { PieChart } from "react-native-svg-charts";
 import styles from './style';
+import style from "./style";
 
 export default function RelatorioScreen({navigation}){
-
+    
     const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
 
     const [dataRelatorio, setDataRelatorio] = useState([]) 
 
     const getRelatorio = async()=>{
         try{
-            const response = await fetch('http://localhost:8000/api/filmes-por-categoria-qtdd')
+            const response = await fetch('https://e470-2804-7518-49bd-de00-454c-a0fa-c249-dffe.ngrok-free.app/api/filmes-por-categoria-qtdd')
             const json = await response.json()
             setDataRelatorio(json)
         }catch(error){
@@ -28,14 +29,15 @@ export default function RelatorioScreen({navigation}){
         getRelatorio();
     }, [])
 
-    const pieData = dataRelatorio.map((item, index)=> ({
+    const pieData = dataRelatorio.filter((item) => item > 0)
+    .map((item, index)=> ({
         value: item.total,
         svg:{
             fill: randomColor(),
-            onPress:() => console.log('press', item.nomeCategoria),
+            onPress:() => console.log('press', index),
         },
         key: `pie-${index}`,
-        nome: item.nomeCategoria
+        
     }))
 
     function goPerfil() {
@@ -91,11 +93,11 @@ export default function RelatorioScreen({navigation}){
                         ></FlatList>
                         <View style={styles.contGraficos}>
                             <View style={styles.contTitulo}>
-                                <Text>Gráficos</Text>
+                                <Text style={styles.txtTituloGraficos}>Gráficos</Text>
                                 <PieChart
-                                style={styles.grafico}
+                                style={{ height: 200 }}
                                 data={pieData}
-                                outerRadius={'95%'}
+                                
                                 ></PieChart>
                             </View>
                         </View>
