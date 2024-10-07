@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import {View, Image, Text, SafeAreaView, TouchableOpacity, ScrollView} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styles from "./style";
-
+import Foundation from '@expo/vector-icons/Foundation';
 import imgGioavanna from '../../img/img-giovanna.jpeg';
 import imgRebecca from '../../img/img-rebecca.jpeg';
 import imgKauane from '../../img/img-kauane.jpeg';
@@ -12,15 +12,18 @@ import imgGuilherme from '../../img/img-guilherme.jpeg';
 export default function DevsScreen({navigation}){
     function goPerfil() {
         navigation.navigate("PerfilScreen");
-      }
-      function goHome(){
+    }
+    function goHome(){
         navigation.navigate("HomeScreen")
-      }
-      function goDevs(){
+    }
+    function goDevs(){
         navigation.navigate("DevsScreen")
-      }
-      function goMapa(){
+    }
+    function goMapa(){
         navigation.navigate('MapaScreen');
+    }
+    function goRelatorio(){
+        navigation.navigate('RelatorioScreen');
     }
     return(
         <SafeAreaView style={styles.container}>
@@ -76,6 +79,9 @@ export default function DevsScreen({navigation}){
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>goDevs()}>
                         <Ionicons name="code-slash-outline" size={24} color="#fff" style={styles.categoryIcon}></Ionicons>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>goRelatorio()}>
+                        <Foundation name="graph-pie" size={24} color="#fff" style={styles.categoryIcon}/>
                     </TouchableOpacity>
                     {/* adc mais categorias */}
                 </View>

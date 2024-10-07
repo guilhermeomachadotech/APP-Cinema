@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Text, View, Image, TextInput, ScrollView, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+import Foundation from '@expo/vector-icons/Foundation';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from './style'; 
 
@@ -101,7 +102,10 @@ export default function HomeScreen({navigation}) {
   }
   function goMapa(){
     navigation.navigate('MapaScreen');
-}
+  }
+  function goRelatorio(){
+    navigation.navigate('RelatorioScreen');
+  }
   return (
     <SafeAreaView style={styles.container}>
       
@@ -273,6 +277,9 @@ export default function HomeScreen({navigation}) {
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>goDevs()}>
           <Ionicons name="code-slash-outline" size={24} color="#fff" style={styles.categoryIcon}></Ionicons>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={()=>goRelatorio()}>
+          <Foundation name="graph-pie" size={24} color="#fff" style={styles.categoryIcon}/>
         </TouchableOpacity>
         {/* adc mais categorias */}
       </View>

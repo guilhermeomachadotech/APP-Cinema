@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Location from 'expo-location';
 import * as Device from 'expo-device';
 import styles from './style'; 
-
+import Foundation from '@expo/vector-icons/Foundation';
 import icon_maker from '../../img/icon/icon-maker.png';
 import icon_location from '../../img/icon/location-marker-icon.png';
 import { ScrollView } from 'react-native';
@@ -66,6 +66,9 @@ export default function MapaScreen({navigation}){
 
     function goMapa(){
         navigation.navigate('MapaScreen');
+    }
+    function goRelatorio(){
+        navigation.navigate('RelatorioScreen');
     }
     //Verficar localização atual:
 
@@ -203,6 +206,9 @@ export default function MapaScreen({navigation}){
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>goDevs()}>
                     <Ionicons name="code-slash-outline" size={24} color="#fff" style={styles.categoryIcon}></Ionicons>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>goRelatorio()}>
+                    <Foundation name="graph-pie" size={24} color="#fff" style={styles.categoryIcon}/>
                 </TouchableOpacity>
                 {/* adc mais categorias */}
             </View>

@@ -2,6 +2,7 @@ import React from 'react';
 import {LinearGradient} from 'expo-linear-gradient';
 import { Text, SafeAreaView, Image, TouchableOpacity, View } from 'react-native';
 import {useState} from 'react';
+import Foundation from '@expo/vector-icons/Foundation';
 import styles from './style';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -25,6 +26,9 @@ export default function PerfilScreen ({navigation}){
     }
     function goMapa(){
         navigation.navigate('MapaScreen');
+    }
+    function goRelatorio(){
+        navigation.navigate('RelatorioScreen');
     }
     return(
         <SafeAreaView style={styles.container}>
@@ -56,16 +60,19 @@ export default function PerfilScreen ({navigation}){
             </LinearGradient>
             <View style={styles.footerMenu}>
                 <TouchableOpacity onPress={()=>voltarMenu()}>
-                <Ionicons name="film" size={24} color="#fff" style={styles.categoryIcon} />
+                    <Ionicons name="film" size={24} color="#fff" style={styles.categoryIcon} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>goMapa()}>
-                <Ionicons name="location-outline" size={24} color="#fff" style={styles.categoryIcon} />
+                    <Ionicons name="location-outline" size={24} color="#fff" style={styles.categoryIcon} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>goPerfil()}>
-                <Ionicons name="person-outline" size={24} color="#fff" style={styles.categoryIcon} />
+                    <Ionicons name="person-outline" size={24} color="#fff" style={styles.categoryIcon} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>goDevs()}>
-                <Ionicons name="code-slash-outline" size={24} color="#fff" style={styles.categoryIcon}></Ionicons>
+                    <Ionicons name="code-slash-outline" size={24} color="#fff" style={styles.categoryIcon}></Ionicons>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>goRelatorio()}>
+                    <Foundation name="graph-pie" size={24} color="#fff" style={styles.categoryIcon}/>
                 </TouchableOpacity>
                 {/* adc mais categorias */}
             </View>
