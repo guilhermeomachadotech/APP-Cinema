@@ -35,7 +35,7 @@ export default function CadastroCliente ({navigation}) {
 
   const cadastrar=()=>{
     if(validarLogin()){
-        fetch('https://e470-2804-7518-49bd-de00-454c-a0fa-c249-dffe.ngrok-free.app/api/cliente', {
+        fetch('http://10.67.4.158:8000/api/cliente', {
           method: 'post',
           headers:{
             'Accept':'application/json',

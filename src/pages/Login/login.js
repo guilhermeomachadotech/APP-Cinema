@@ -20,7 +20,7 @@ export default function LoginScreen ({navigation}) {
 
   const getCliente = async()=>{
     try{
-      const response = await fetch('https://e470-2804-7518-49bd-de00-454c-a0fa-c249-dffe.ngrok-free.app/api/cliente');
+      const response = await fetch('http://10.67.4.158:8000/api/cliente');
       const json =await response.json();
       setClientes(json);
     }catch(error){

@@ -4,20 +4,24 @@ import { LinearGradient } from "expo-linear-gradient";
 import {Ionicons} from '@expo/vector-icons';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 import Foundation from '@expo/vector-icons/Foundation';
+import { BarChart } from 'react-native-chart-kit';
+import { Dimensions } from 'react-native';
+
 import { useEffect, useState } from "react";
-import { PieChart } from "react-native-svg-charts";
+
 import styles from './style';
-import style from "./style";
+
 
 export default function RelatorioScreen({navigation}){
-    
+    const screenWidth = Dimensions.get('window').width;
+
     const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
 
     const [dataRelatorio, setDataRelatorio] = useState([]) 
 
     const getRelatorio = async()=>{
         try{
-            const response = await fetch('https://e470-2804-7518-49bd-de00-454c-a0fa-c249-dffe.ngrok-free.app/api/filmes-por-categoria-qtdd')
+            const response = await fetch('http://10.67.4.158:8000/api/filmes-por-categoria-qtdd')
             const json = await response.json()
             setDataRelatorio(json)
         }catch(error){
@@ -29,16 +33,12 @@ export default function RelatorioScreen({navigation}){
         getRelatorio();
     }, [])
 
-    const pieData = dataRelatorio.filter((item) => item > 0)
-    .map((item, index)=> ({
-        value: item.total,
-        svg:{
-            fill: randomColor(),
-            onPress:() => console.log('press', index),
-        },
-        key: `pie-${index}`,
-        
+    
+    const barData = dataRelatorio.map(item =>({
+        labels: item.nomeCategoria,
+        datasets: {data: item.total}
     }))
+    
 
     function goPerfil() {
         navigation.navigate("PerfilScreen");
@@ -94,11 +94,24 @@ export default function RelatorioScreen({navigation}){
                         <View style={styles.contGraficos}>
                             <View style={styles.contTitulo}>
                                 <Text style={styles.txtTituloGraficos}>Gráficos</Text>
-                                <PieChart
-                                style={{ height: 200 }}
-                                data={pieData}
-                                
-                                ></PieChart>
+                                <BarChart
+                                    data={barData}
+                                    width={screenWidth - 16} 
+                                    height={220}
+                                    yAxisLabel="" 
+                                    chartConfig={{
+                                    backgroundColor: '#000000',
+                                    backgroundGradientFrom: '#0000ff',
+                                    backgroundGradientTo: '#4fb7cd',
+                                    decimalPlaces: 2,
+                                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                    style: {
+                                        borderRadius: 16,
+                                    },
+                                    }}
+                                    style={styles.chart}
+                                />
                             </View>
                         </View>
                     </View>

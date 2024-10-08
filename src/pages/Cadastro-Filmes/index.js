@@ -32,7 +32,7 @@ export default function CadastroFilmes() {
 
   const getCategoria= async()=>{
     try{
-        const response = await fetch('http://localhost:8000/api/categoria');
+        const response = await fetch('http://10.67.4.158:8000/api/categoria');
         const json = await response.json();
         setDataCategoria(json);
     }catch(error){

@@ -11,7 +11,7 @@ export default function Categoria({navigation}) {
 
   const getCategoria = async()=>{
     try{
-      const response = await fetch('https://e470-2804-7518-49bd-de00-454c-a0fa-c249-dffe.ngrok-free.app/api/categoria')
+      const response = await fetch('http://10.67.4.158:8000/api/categoria')
       const json = await response.json();
       setDataCategoria(json);
     }catch(error){
