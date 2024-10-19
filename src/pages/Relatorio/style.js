@@ -2,9 +2,12 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container: {
-      flex: 1,
+      display:'flex',
+      width:'100%',
+      height:'100%',
       backgroundColor: '#000',
     },
+    
     header: {
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -74,8 +77,16 @@ export default StyleSheet.create({
       marginTop:20,
       fontSize:20,
       color:'#fff',
-      fontWeight:'bold'
-
+      fontWeight:'bold',
+    },
+    chart: {
+      marginVertical: 8,
+    },
+    graficos:{
+      display:'flex',
+      width:'100%',
+      justifyContent:'center',
+      alignItems:'center',
     }
   });
   

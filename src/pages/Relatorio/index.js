@@ -1,10 +1,10 @@
 import React from "react";
-import { Text, Image, View, TouchableOpacity, ScrollView, SafeAreaView, FlatList, TextInput} from "react-native";
+import { Text, Image, View, TouchableOpacity, ScrollView, SafeAreaView, FlatList, TextInput, ActivityIndicator} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import {Ionicons} from '@expo/vector-icons';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 import Foundation from '@expo/vector-icons/Foundation';
-import { BarChart } from 'react-native-chart-kit';
+import { BarChart, PieChart } from 'react-native-chart-kit';
 import { Dimensions } from 'react-native';
 
 import { useEffect, useState } from "react";
@@ -13,32 +13,54 @@ import styles from './style';
 
 
 export default function RelatorioScreen({navigation}){
+    const [dataRelatorio, setDataRelatorio] = useState();
+    const [loading, setLoading] = useState(true);
+
     const screenWidth = Dimensions.get('window').width;
 
-    const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
+    const randomColor = () => { return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0')}
 
-    const [dataRelatorio, setDataRelatorio] = useState([]) 
+    //Função para formatar os dados para o BarChart
+
+    const formatarDataBarChart = (data)=>{
+        
+        return{
+            labels: data.map(item => item.nomeCategoria),
+            datasets:[
+                {
+                    data: data.map(item=>item.total)
+                }
+            ]
+        }
+    }
+    
+    //Função para obter e formatar os dados para o gráfico de pizza
+    const pizzaFormatData = (data)=>{
+        return data.map(item => ({
+            name: item.nomeCategoria,
+            population: item.total,
+            color : randomColor(),
+            legendFontColor: "white",
+            legendFontSize: 15,
+        }))
+            
+    }
 
     const getRelatorio = async()=>{
         try{
-            const response = await fetch('http://10.67.4.158:8000/api/filmes-por-categoria-qtdd')
+            const response = await fetch('https://8420-2804-7518-49b9-7b00-c8fe-1c6c-a9e3-93c0.ngrok-free.app/api/filmes-por-categoria-qtdd')
             const json = await response.json()
             setDataRelatorio(json)
+            setLoading(false)
         }catch(error){
             console.error(error)
+            setLoading(false)
         }
     }
 
     useEffect(()=>{
         getRelatorio();
     }, [])
-
-    
-    const barData = dataRelatorio.map(item =>({
-        labels: item.nomeCategoria,
-        datasets: {data: item.total}
-    }))
-    
 
     function goPerfil() {
         navigation.navigate("PerfilScreen");
@@ -64,7 +86,8 @@ export default function RelatorioScreen({navigation}){
     }
     return(
         <SafeAreaView style={styles.container}>
-            <ScrollView>
+            
+            <ScrollView contentContainerStyle={styles.scroll}>
                 <LinearGradient colors={["#1C1C1C", "#363636", "#4F4F4F"]} style={styles.gradient}>
                     <View style={styles.header}>
                         <TouchableOpacity style={styles.btnLink} onPress={()=>goPerfil()}>
@@ -94,24 +117,55 @@ export default function RelatorioScreen({navigation}){
                         <View style={styles.contGraficos}>
                             <View style={styles.contTitulo}>
                                 <Text style={styles.txtTituloGraficos}>Gráficos</Text>
-                                <BarChart
-                                    data={barData}
-                                    width={screenWidth - 16} 
-                                    height={220}
-                                    yAxisLabel="" 
-                                    chartConfig={{
-                                    backgroundColor: '#000000',
-                                    backgroundGradientFrom: '#0000ff',
-                                    backgroundGradientTo: '#4fb7cd',
-                                    decimalPlaces: 2,
-                                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                                    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                                    style: {
-                                        borderRadius: 16,
-                                    },
-                                    }}
-                                    style={styles.chart}
-                                />
+                                {loading ? (
+                                    <ActivityIndicator size={'large'} color={'#E5241B'}></ActivityIndicator>
+                                ):(
+                                    dataRelatorio &&(
+                                        <View style={styles.graficos}>
+                                            <BarChart
+                                                data={formatarDataBarChart(dataRelatorio)}
+                                                width={screenWidth - 16} 
+                                                height={220}
+                                                yAxisLabel="Total " 
+
+                                                chartConfig={{
+                                                backgroundColor: '#0000ff',
+                                                backgroundGradientFrom: '#FF1B1B',
+                                                backgroundGradientTo:'#FF4F4C',
+                                                
+                                                decimalPlaces: 0,
+                                                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                                style: {
+                                                    borderRadius: 16,
+                                                },
+                                                }}
+                                                style={styles.chart}
+                                            />
+                                            <PieChart
+                                            data={pizzaFormatData(dataRelatorio)}
+                                            width={screenWidth}
+                                            height={220}
+                                            chartConfig={{
+                                                backgroundGradientFrom: "#1E2923",
+                                                backgroundGradientFromOpacity: 0,
+                                                backgroundGradientTo: "#08130D",
+                                                backgroundGradientToOpacity: 0.5,
+                                                color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+                                                strokeWidth: 2, // optional, default 3
+                                                barPercentage: 0.5,
+                                                useShadowColorFromDataset: false // optional
+                                            }}
+                                            accessor={"population"}
+                                            backgroundColor={"transparent"}
+                                            paddingLeft={"14"}
+                                            center={[10,50]}
+                                            
+                                            ></PieChart>
+                                        </View>
+                                    )
+                                )}
+                                
                             </View>
                         </View>
                     </View>
