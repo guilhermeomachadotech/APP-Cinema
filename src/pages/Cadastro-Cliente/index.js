@@ -35,7 +35,7 @@ export default function CadastroCliente ({navigation}) {
 
   const cadastrar=()=>{
     if(validarLogin()){
-        fetch('http://10.67.4.158:8000/api/cliente', {
+        fetch('http://10.67.4.20:8000/api/cliente', {
           method: 'post',
           headers:{
             'Accept':'application/json',

@@ -20,7 +20,7 @@ export default function LoginScreen ({navigation}) {
 
   const getCliente = async()=>{
     try{
-      const response = await fetch('http://10.67.4.158:8000/api/cliente');
+      const response = await fetch('http://10.67.4.20:8000/api/cliente');
       const json =await response.json();
       setClientes(json);
     }catch(error){

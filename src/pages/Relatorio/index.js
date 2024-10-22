@@ -48,7 +48,7 @@ export default function RelatorioScreen({navigation}){
 
     const getRelatorio = async()=>{
         try{
-            const response = await fetch('https://8420-2804-7518-49b9-7b00-c8fe-1c6c-a9e3-93c0.ngrok-free.app/api/filmes-por-categoria-qtdd')
+            const response = await fetch('http://10.67.4.20:8000/api/filmes-por-categoria-qtdd')
             const json = await response.json()
             setDataRelatorio(json)
             setLoading(false)
